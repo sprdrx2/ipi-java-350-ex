@@ -1,1 +1,7 @@
 language: java
+
+addons:
+  sonarcloud:
+    organization: "sprdrx2-github"
+script:
+  - sonar-scanner
