@@ -4,4 +4,4 @@ addons:
   sonarcloud:
     organization: "sprdrx2-github"
 script:
-  - mvn clean org.jacobo:jacobo-maven-plugin:prepare-agent package sonar:sonar
+  - mvn clean org.jacobo:jacobo-maven-plugin.prepare-agent package sonar:sonar
