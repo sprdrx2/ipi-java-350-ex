@@ -85,4 +85,52 @@ public class EmployeTest {
 
     }
 
+    @Test
+    public void checkAugmenterSalaireNullPercent() {
+        Employe employe = new Employe("Norimaki", "Arale", "M00001", LocalDate.now(), Entreprise.SALAIRE_BASE, 1, 1.0);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            employe.augmenterSalaire(null);
+        } );
+    }
+
+    @Test
+    public void checkAugmenterSalaireNegativePercent() {
+        Employe employe = new Employe("Norimaki", "Arale", "M00001", LocalDate.now(), Entreprise.SALAIRE_BASE, 1, 1.0);
+         Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            employe.augmenterSalaire((double) -1);
+        } );
+    }
+
+    @Test
+    public void checkAugmenterSalaireNullSalaire() {
+        Employe employe = new Employe("Norimaki", "Arale", "M00001", LocalDate.now(), null, 1, 1.0);
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            employe.augmenterSalaire((double) 10);
+        } );
+    }
+
+    @Test
+    public void checkAugmenterSalaireNegativeSalaire() {
+        Employe employe = new Employe("Norimaki", "Arale", "M00001", LocalDate.now(), (double) -1, 1, 1.0);
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            employe.augmenterSalaire((double) 10);
+        } );
+    }
+
+    @Test
+    public void checkAugmenterSalaireZeroPercent() {
+        Employe employe = new Employe("Norimaki", "Arale", "M00001", LocalDate.now(), Entreprise.SALAIRE_BASE, 1, 1.0);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            employe.augmenterSalaire((double) 0);
+        } );
+    }
+
+    @Test
+    public void checkAugmenterSalaire10Percent() {
+        Employe employe = new Employe("Norimaki", "Arale", "M00001", LocalDate.now(), Entreprise.SALAIRE_BASE, 1, 1.0);
+        employe.augmenterSalaire(10.0);
+        Double salaireAttendu = 1673.342;
+        Assertions.assertEquals(employe.getSalaire(), salaireAttendu);
+    }
+
 }
